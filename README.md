@@ -1,0 +1,2 @@
+# AI_institute_fundation_project_email
+MCP foundation proj
