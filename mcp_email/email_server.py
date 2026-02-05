@@ -8,6 +8,7 @@ import mcp.types as types
 
 from mcp_email.get_unread_emails.get_unread_emails import get_unread_emails
 from mcp_email.create_draft_reply.create_draft_reply import _create_draft_reply
+from mcp_email.send_thread_reply.send_thread_reply import send_thread_reply
 
 server = Server("email-server")
 
@@ -58,6 +59,32 @@ async def list_tools() -> list[types.Tool]:
                 "required": ["threadId"],
             },
         ),
+        types.Tool(
+            name="send_thread_reply",
+            description=(
+                "Send a reply email in an existing Gmail thread. "
+                "The reply is sent as the authenticated user, "
+                "in the correct thread. "
+                "If the thread contains an external sender, the reply "
+                "is addressed to them. "
+                "If the thread is self-only (e.g. test or notes), "
+                "the reply is sent to the user's own address."
+            ),
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "threadId": {
+                        "type": "string",
+                        "description": "Gmail thread ID being replied to",
+                    },
+                    "replyText": {
+                        "type": "string",
+                        "description": "Final reply body text to send",
+                    },
+                },
+                "required": ["threadId", "replyText"],
+            },
+        ),
     ]
 
 
@@ -68,6 +95,9 @@ async def call_tool(name: str, arguments: dict) -> list[types.TextContent]:
 
     if name == "create_draft_reply":
         return _create_draft_reply(arguments)
+
+    if name == "send_thread_reply":
+        return send_thread_reply(arguments)
 
     raise ValueError(f"Unknown tool: {name}")
 

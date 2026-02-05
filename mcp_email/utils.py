@@ -4,7 +4,10 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 import os
 
-SCOPES = ["https://www.googleapis.com/auth/gmail.readonly"]
+SCOPES = [
+    "https://www.googleapis.com/auth/gmail.readonly",
+    "https://www.googleapis.com/auth/gmail.send"
+]
 
 # HARD-CODED absolute paths so can use with MCP client and direct invoke easily (being lazy)
 TOKEN_FILE = "/Users/ronantwomweyfriedlander/Desktop/code/KL/CV CODE REPOS/AI_institute_fundation_project_email/token.json"
