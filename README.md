@@ -56,6 +56,8 @@ uv pip install -e .
 5) Ask what tools are available.
 ---
 
+---
+
 # User guide for our tools 
 As specified above in the client config, our mcp server code is found at **mcp_email/email_server.py**
 
@@ -69,35 +71,51 @@ It contains three tools:
 Each tools has a clear description in the MCP tool registry, but an overview of expected user flow is illustrated below: 
 In chat with MCP client, [u]: user, [c]: MCP client, [s]: MCP server: 
 
+```md
 #### i) Checking available tools:
-1) [u->c]: "What email tools are available?"
-2) [c->s]: "tools/list" request
-3) [s]: list_tools()
-4) [s->c]: list[types.Tool]
-5) [c_u]: "you have three tools available: 1) get_unread_emails, ..."
 
+1. [u->c]: "What email tools are available?"
+2. [c->s]: `tools/list` request
+3. [s]: `list_tools()`
+4. [s->c]: `list[types.Tool]`
+5. [c->u]: "You have three tools available: 1) get_unread_emails, ..."
+```
 
+```md
 #### ii) Checking unread emails:
-1) [u->c]: "what unread emails do I have?"
-2) [c->s]: `tools/call` request with `{"name": "get_unread_emails", "arguments": {}}`
-3) [s]: call_tool("get_unread_emails", {})
-4) [s->c]:  list[types.TextContent] *(text summary content on unread email thread_ids, sender, subject )
-5) [c_u]: "you have 5 unread email threads from the last few days: 1) From Amazon ..."
+1. [u->c]: "what unread emails do I have?"
+2. [c->s]: `tools/call` request with `{"name": "get_unread_emails", "arguments": {}}`
+3. [s]: call_tool("get_unread_emails", {})
+4. [s->c]:  list[types.TextContent] *(text summary content on unread email thread_ids, sender, subject )
+5. [c_u]: "you have 5 unread email threads from the last few days: 1) From Amazon ..."
 
+```
 
+```md
 #### iii) Drafting a reply:
-1) [u->c]: "great, please draft me a reply to Amazon"
-2) [c->s]: `tools/call` request with `{"name": "create_draft_reply", "arguments": {"threadId": "XXXXXXXX"}}`
-3) [s]: call_tool("create_draft_reply", {"threadId": "XXXXXXXX"})
-4) [s->c]: list[types.TextContent] *(JSON payload with instructions, threadId, and messages array)
-5) [c->u]: "Here's a draft reply: [generated reply text based on thread context, e.g. "Dear Amazon Team, ..."]"
+1. [u->c]: "great, please draft me a reply to Amazon"
+2. [c->s]: `tools/call` request with `{"name": "create_draft_reply", "arguments": {"threadId": "XXXXXXXX"}}`
+3. [s]: call_tool("create_draft_reply", {"threadId": "XXXXXXXX"})
+4. [s->c]: list[types.TextContent] *(JSON payload with instructions, threadId, and messages array)
+5. [c->u]: "Here's a draft reply: [generated reply text based on thread context, e.g. "Dear Amazon Team, ..."]"
 
+```
+
+```md
 #### iv) Sending the reply:
-1) [u->c]: "use the thread reply tool to send the reply"
-2) [c->s]: `tools/call` request with `{"name": "send_thread_reply", "arguments": {"threadId": "XXXXXXXX", "replyText": "Dear Amazon Team, ..."}}`
-3) [s]: call_tool("send_thread_reply", {"threadId": "xxxx", "replyText": "Dear Amazon Team, ..."})
-4) [s->c]: list[types.TextContent] *("Reply sent successfully")
-5) [c->u]: "Your reply has been sent successfully!"
+1. [u->c]: "use the thread reply tool to send the reply"
+2. [c->s]: `tools/call` request with `{"name": "send_thread_reply", "arguments": {"threadId": "XXXXXXXX", "replyText": "Dear Amazon Team, ..."}}`
+3. [s]: call_tool("send_thread_reply", {"threadId": "xxxx", "replyText": "Dear Amazon Team, ..."})
+4. [s->c]: list[types.TextContent] *("Reply sent successfully")
+5. [c->u]: "Your reply has been sent successfully!"
+```
 
-#### iv) Go to Gmail and check ! 
+
+```md
+#### v) Go to Gmail and check ! 
+```
 ![reply confirmation](docs/reply_in_gmail.png)
+
+
+
+
