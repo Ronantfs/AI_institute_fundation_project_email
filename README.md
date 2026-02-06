@@ -69,6 +69,8 @@ It contains three tools:
 - create_draft_reply
 - send_thread_reply
 
+![e2e demo of flow](docs/e2e_demo.gif)
+
 Each tools has a clear description in the MCP tool registry, but an overview of expected user flow is illustrated below: 
 [In chat with MCP client, [u]: user, [c]: MCP client, [s] MCP server: 
 
@@ -79,14 +81,13 @@ Each tools has a clear description in the MCP tool registry, but an overview of 
 4) [s->c]: list[types.Tool]
 5) [c_u]: "you have three tools availbe: 1) get_unread_emails, ..."
 
-![Demo of availble tools](docs/demo.gif)
 
 #### ii) Checking unread emails:
 1) [u->c]: "what unread emails do I have?"
 2) [c->s]: `tools/call` request with `{"name": "get_unread_emails", "arguments": {}}`
 3) [s]: call_tool("get_unread_emails", {})
 4) [s->c]:  list[types.TextContent] *(text summary content on unread email thread_ids, sender, subject )
-5) [c_u]: "you 5 unread emails threads from the last few days: 1) From Amazon ... "
+5) [c_u]: "you 5 unread emails threads from the last few days: 1) From Amazon ..."
 
 
 #### iii) Drafting a reply:
@@ -96,7 +97,6 @@ Each tools has a clear description in the MCP tool registry, but an overview of 
 4) [s->c]: list[types.TextContent] *(JSON payload with instructions, threadId, and messages array)
 5) [c->u]: "Here's a draft reply: [generated reply text based on thread context, e.g. "Dear Amazon Team, ..."]"
 
-
 #### iv) Sending the reply:
 1) [u->c]: "use the thread reply tool to send the reply"
 2) [c->s]: `tools/call` request with `{"name": "send_thread_reply", "arguments": {"threadId": "XXXXXXXX", "replyText": "Dear Amazon Team, ..."}}`
@@ -105,6 +105,3 @@ Each tools has a clear description in the MCP tool registry, but an overview of 
 5) [c->u]: "Your reply has been sent successfully!"
 
 #### iv) Go to Gmail and check ! 
-
-
-DEMO GIF: 
