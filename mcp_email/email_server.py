@@ -12,11 +12,6 @@ from mcp_email.send_thread_reply.send_thread_reply import send_thread_reply
 
 server = Server("email-server")
 
-# specify in mcp client config
-email_user = os.environ["EMAIL_USER"]
-email_password = os.environ["EMAIL_APP_PASSWORD"]
-
-
 @server.list_tools()
 async def list_tools() -> list[types.Tool]:
     return [

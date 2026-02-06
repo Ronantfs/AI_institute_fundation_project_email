@@ -9,9 +9,8 @@ SCOPES = [
     "https://www.googleapis.com/auth/gmail.send"
 ]
 
-# HARD-CODED absolute paths so can use with MCP client and direct invoke easily (being lazy)
-TOKEN_FILE = "/Users/ronantwomweyfriedlander/Desktop/code/KL/CV CODE REPOS/AI_institute_fundation_project_email/token.json"
-CLIENT_SECRET_FILE = "/Users/ronantwomweyfriedlander/Desktop/code/KL/CV CODE REPOS/AI_institute_fundation_project_email/gmail_credentials.json"
+TOKEN_FILE = os.getenv("TOKEN_FILE", "")
+CLIENT_SECRET_FILE = os.getenv("CLIENT_SECRET_FILE", "")
 
 
 def get_gmail_service():
