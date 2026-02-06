@@ -67,7 +67,7 @@ It contains three tools:
 ![e2e demo of flow](docs/e2e_demo.gif)
 
 Each tools has a clear description in the MCP tool registry, but an overview of expected user flow is illustrated below: 
-[In chat with MCP client, [u]: user, [c]: MCP client, [s]: MCP server: 
+In chat with MCP client, [u]: user, [c]: MCP client, [s]: MCP server: 
 
 #### i) Checking available tools:
 1) [u->c]: "What email tools are available?"
