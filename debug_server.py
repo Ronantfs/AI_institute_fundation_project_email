@@ -22,10 +22,6 @@ def dump_stderr(proc):
 PYTHON = os.environ["PYTHON_PATH"]
 SERVER = os.environ["MCP_SERVER_PATH"]
 
-ENV = {
-    "EMAIL_USER": os.environ["EMAIL_USER"],
-    "EMAIL_APP_PASSWORD": os.environ["EMAIL_APP_PASSWORD"],
-}
 
 # MCP HELPERS
 def send(proc, msg):
@@ -72,7 +68,6 @@ def _init_mcp_client_server_connection():
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         text=True,
-        env=ENV,
     )
 
     # ---- init, see https://modelcontextprotocol.io/specification/2025-03-26/basic/lifecycle
