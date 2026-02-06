@@ -71,7 +71,7 @@ Each tools has a clear description in the MCP tool registry, but an overview of 
 
 #### i) Checking available tools:
 1) [u->c]: "What email tools are available?"
-2) [c->s]: `tools/list` request
+2) [c->s]: "tools/list" request
 3) [s]: list_tools()
 4) [s->c]: list[types.Tool]
 5) [c_u]: "you have three tools available: 1) get_unread_emails, ..."
