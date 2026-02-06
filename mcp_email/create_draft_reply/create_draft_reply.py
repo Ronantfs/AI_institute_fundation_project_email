@@ -39,7 +39,7 @@ def _clean_body_for_llm(text: str) -> str:
     # 3) Replace `[label](url)` with just `label`
     clean_text = _LINK_RE.sub(r"\1", clean_text)
 
-    # 4) Optional: collapse multiple spaces
+    # 4) Collapse multiple spaces
     clean_text = re.sub(r"\s+", " ", clean_text).strip()
 
     return clean_text
